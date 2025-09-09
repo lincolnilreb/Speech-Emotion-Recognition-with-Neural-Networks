@@ -1,76 +1,35 @@
 # Speech Emotion Recognition (SER) with Wav2Vec2 and QLoRA
 
-This is a part of project that builds a **Speech Emotion Recognition (SER)** system using **Wav2Vec2** models.  
-It focuses on training and fine-tuning large pre-trained models efficiently using **QLoRA** (Quantized Low-Rank Adaptation).
 
-We use emotional speech datasets like **CREMA-D**, **RAVDESS**, and **TESS**, and aim to classify different emotions (such as happy, sad, angry, fear, etc.) based on audio recordings.
+## 📖 Project Overview  
+This project develops a **Speech Emotion Recognition (SER)** system by fine-tuning large pre-trained speech models, primarily **Wav2Vec2** and **Whisper**, on benchmark emotional audio datasets. The system classifies emotions directly from raw `.wav` files, leveraging **parameter-efficient fine-tuning** techniques (LoRA / QLoRA) to balance performance with computational efficiency.  
 
-There are two main approaches in this project:
-- **Fine-tune a Wav2Vec2 model with a custom classification head**
-- **Apply QLoRA on a 4-bit quantized Wav2Vec2 model to save memory and speed up training**
+The pipeline covers end-to-end SER: dataset preprocessing, feature extraction, model adaptation, training, and evaluation with industry-standard metrics.  
 
-The project handles:
-- Dataset preprocessing
-- Audio feature extraction
-- Model fine-tuning
-- Training with QLoRA
-- Model evaluation and metrics reporting
 
----
+## ✨ Key Highlights  
+- **10,000+ audio samples** across benchmark datasets: CREMA-D, RAVDESS, and TESS.  
+- **Fine-tuned large speech models** (Wav2Vec2, Whisper) with a custom classification head.  
+- Achieved **84% classification accuracy** across seven core emotion categories (disgust, happy, sad, fear, neutral, angry, surprised).  
+- Applied **LoRA & QLoRA** for efficient fine-tuning:  
+  - 4-bit quantization (NF4 format).  
+  - Reduced training cost and memory footprint while sustaining model accuracy.  
+- Comprehensive evaluation with **Accuracy, UAR (Unweighted Average Recall), F1-score, Cohen’s Kappa**, and confusion matrices.  
 
-## Project Highlights
 
-- **Speech Audio Input**: Works directly with raw `.wav` files.
-- **Emotion Categories**: Disgust, Happy, Sad, Fear, Neutral, Angry, Surprised.
-- **Model Architecture**:
-  - Pre-trained **Wav2Vec2-Large-XLSR-53** backbone
-  - Added lightweight classification head
-  - LoRA adapters applied only to key transformer layers
-- **QLoRA Training**:
-  - Quantized model to 4-bit (NF4 format)
-  - Fine-tuned with LoRA for memory efficiency
-- **Evaluation**:
-  - Accuracy, UAR (Unweighted Average Recall), F1-score, Cohen's Kappa
-  - Confusion Matrix Visualization
-- **Model Saving**: Best model checkpoints saved for later use
+## 🛠️ Tech Stack  
+- **Frameworks & Libraries**: PyTorch · Hugging Face Transformers · PEFT · BitsAndBytes  
+- **Data & Audio Processing**: torchaudio · librosa · scikit-learn · matplotlib  
+- **Techniques**:  
+  - Transfer Learning with Transformers  
+  - LoRA / QLoRA for parameter-efficient fine-tuning  
+  - Model quantization & optimization  
+- **Environments**:  
+  - ICE-PACE HPC cluster  
+  - Single-GPU training compatibility  
 
----
+## 🚀 Impact  
+- This project demonstrates how **state-of-the-art speech transformers** can be adapted for emotion recognition in a **resource-constrained setting**.  
+- By applying **QLoRA**, the system maintains high performance while cutting GPU memory usage and training costs—making advanced SER solutions accessible even outside large compute environments.  
 
-## Why QLoRA?
-
-Training full-size Wav2Vec2 models can be very memory-intensive.  
-**QLoRA** helps by:
-- Reducing model size dramatically (4-bit quantization)
-- Training only small LoRA adapters instead of the full model
-- Achieving competitive performance even on limited hardware (e.g., a single GPU)
-
----
-
-## How to Use - using "ICE - PACE"
-
-1. Download the emotional speech datasets (CREMA-D, RAVDESS, TESS).
-2. Preprocess the metadata and audio files.
-3. Install required Python packages.
-4. Choose to:
-   - Fine-tune Wav2Vec2 normally, or
-   - Fine-tune with QLoRA for more efficient training.
-5. Evaluate model performance.
-
-All training and evaluation scripts are provided!
-
----
-
-## Requirements
-
-- Python 3.8+
-- PyTorch
-- HuggingFace Transformers
-- PEFT (Parameter-Efficient Fine-Tuning)
-- BitsAndBytes (for 4-bit quantization)
-- scikit-learn
-- torchaudio
-- librosa
-- matplotlib
-
----
 
